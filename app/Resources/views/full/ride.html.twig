@@ -1,0 +1,76 @@
+{% extends "pagelayout.html.twig" %}
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row regular-content-size">
+                <div class="col-xs-10 col-xs-offset-1 row-padding">
+                    <div class="col-xs-12">
+                        <div class="col-xs-1 text-left">
+                            <h2>Ride:</h2>
+                        </div>
+                        <div class="col-xs-11 text-left">
+                            <h2 class="extra-padding-left">{{ ez_content_name( content ) }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div id="map-container">
+            {{ ez_render_field(content, 'starting_point', {'parameters': { 'height': '330px', 'showMap': true, 'showInfo': false }}) }}
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row regular-content-size">
+                <div class="col-xs-10 col-xs-offset-1 padding-box">
+                    <div class="col-xs-2">
+                        <div class="box-ride">
+                            <h3 class="special-number">{{ ez_render_field( content, 'length') }} Km</h3>
+                            <p class="pre-small special-number special-number-margin"><strong>{{ 'Level' }}</strong></p>
+                        </div>
+                    </div>
+                    <div class="col-xs-10">
+                        <div class="col-xs-5">
+                            <p>Created by: {{ ez_field_value( content, 'author') }}</p>
+                            <p>Start: {{ ez_field_value(content, 'starting_point') }}
+                            </p>
+                            <p>End: {{ ez_field_value(content, 'ending_point') }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-10 col-xs-offset-1 padding-box">
+                    <div class="col-xs-10">
+                        <div class="col-xs-2 text-right">
+                            <p>Description:</p>
+                        </div>
+                        <div class="col-xs-10 text-justify">
+                            {{ ez_render_field( content, 'description') }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section>
+
+        {% if pois.searchHits is defined and pois.searchHits is not empty %}
+            <div class="container">
+                <div class="row regular-content-size">
+                    <div class="col-xs-10 col-xs-offset-1 padding-box">
+                        <section class="photos">
+                            <div class="col-xs-10">
+                                <h4 class="underscore-green">Points of interest:</h4>
+                            </div>
+                            {% for poi in pois.searchHits %}
+                                {{ render( controller( "ez_content:viewLocation", { 'locationId': poi.valueObject.contentInfo.mainLocationId, 'viewType': 'line'} )) }}
+                            {% endfor %}
+                        </section>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </section>
+{% endblock %}

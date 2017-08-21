@@ -1,5 +1,5 @@
 ezpublish:
-    # HttpCache settings, By default 'local' (Symfony HttpCache Proxy), by setting it to 'http' you can point it to Varnish
+    # HttpCache settings, By default 'local' (Symfony HttpCache Proxezpay), by setting it to 'http' you can point it to Varnish
     http_cache:
         purge_type: %purge_type%
 
@@ -36,3 +36,35 @@ ezpublish:
             # HttpCache purge server(s) setting, eg Varnish, for when ezpublish.http_cache.purge_type is set to 'http'.
             http_cache:
                 purge_servers: ["%purge_server%"]
+        site: #same level as site_group directive
+            content_view:
+                full:
+                    root_folder:
+                        controller: "ez_query:contentQueryAction"
+                        template: "full/welcome.html.twig"
+                        params:
+                            query:
+                                query_type: 'SectionChildren'
+                                parameters:
+                                    subtree: "@=location.pathString"
+                                    type: ['ride']
+                                assign_results_to: 'children'
+                        match:
+                            Id\Location: 2
+                    full_ride:
+                        controller: "ez_query:contentQueryAction"
+                        template: "full/ride.html.twig"
+                        match:
+                            Identifier\ContentType: "ride"
+                        params:
+                            query:
+                                query_type: 'SectionChildren'
+                                parameters:
+                                    subtree: "@=location.pathString"
+                                    type: ['poi']
+                                assign_results_to: 'pois'
+                line:
+                    poi_line:
+                        template: "line/point_of_interest.html.twig"
+                        match:
+                            Identifier\ContentType: "poi"

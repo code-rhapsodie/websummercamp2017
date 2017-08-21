@@ -1,0 +1,39 @@
+<section>
+    <div class="col-xs-4 photos-box">
+        <a href="#bikeModal{{ content.id }}" class="portfolio-link" data-toggle="modal">
+            <div class="caption">
+                <div class="caption-content">
+                    <i class="fa fa-search-plus fa-3x"></i>
+                </div>
+            </div>
+            {{ ez_render_field( content, 'photo', { parameters: { 'alias': 'small'},
+                attr: { 'class': 'img-responsive img-rounded', 'alt':'' }}) }}
+            {#<img src="images/lyon.png" class="img-responsive img-rounded" alt="">#}
+        </a>
+    </div>
+
+    {# MODAL #}
+    <div class="bike-modal modal fade" id="bikeModal{{ content.id }}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-8 col-xs-offset-2">
+                        <div class="modal-body text-center">
+                            <h2>Photo: {{ ez_content_name( content ) }}</h2>
+                            <hr class="featurette-divider">
+                            {{ ez_render_field( content, 'photo', { parameters: { 'alias': 'large'},
+                                attr: { 'class': 'img-responsive img-rounded' }}) }}
+                            {{ ez_render_field( content, 'description', { attr: { 'class': 'padding-box text-justify' }}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
