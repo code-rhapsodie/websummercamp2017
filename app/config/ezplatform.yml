@@ -1,7 +1,7 @@
 ezpublish:
     # HttpCache settings, By default 'local' (Symfony HttpCache Proxezpay), by setting it to 'http' you can point it to Varnish
     http_cache:
-        purge_type: %purge_type%
+        purge_type: '%purge_type%'
 
     # Repositories configuration, setup default repository to support solr if enabled
     repositories:
@@ -62,15 +62,17 @@ ezpublish:
                                     subtree: "@=location.pathString"
                                     type: ['poi']
                                 assign_results_to: 'pois'
-                            foo: bar
-                            os: ['linux', 'macos', 'losedows']
-                            languages: '$languages$'
-                            yui_modules: '$yui.modules;ez_platformui$'
+                            metadata:
+                                provider: metadata_provider
+
                 line:
                     poi_line:
                         template: "line/point_of_interest.html.twig"
                         match:
                             Identifier\ContentType: "poi"
+                        params:
+                            metadata:
+                                provider: metadata_provider
         site:
             design: my_design1
         site2:

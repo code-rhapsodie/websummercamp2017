@@ -33,3 +33,8 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    AppBundle\Provider\MetaDataProvider:
+        arguments: ['@ezpublish.api.service.user', '@ezpublish.api.service.content_type']
+        tags:
+            - { name: ez_core_extra.view_parameter_provider, alias: metadata_provider }
