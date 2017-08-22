@@ -45,7 +45,6 @@
 /web/design
 /web/extension
 /web/share
-/web/var
 /web/.htaccess
 composer.phar
 .buildpath
