@@ -78,3 +78,11 @@ ezdesign:
         # "theme1" will be the first tried. If the template cannot be found in "theme1", "theme2" will be tried out, and then default app/Resources/views folder.
         my_design1: [corporate]
         my_design2: [site2, corporate]
+
+assetic:
+    assets:
+        corporate_css:
+            inputs:
+                - "assets/themes/corporate/css/bootstrap.min.css"
+                - "assets/themes/corporate/css/bootstrap-theme.css"
+                - "assets/themes/corporate/css/normalize.css"

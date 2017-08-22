@@ -12,9 +12,12 @@
     <title>Beginners Tutorial - Bike Rides new</title>
     <!-- <link rel="icon" type="image" href="images/favicon.ico"> -->
 
-    {% stylesheets 'assets/css/*' filter='cssrewrite' %}
+    {% stylesheets '@corporate_css' filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
+
+    <link rel="stylesheet" href="{{ asset('css/style.css', 'ezdesign' ) }}" />
+
 </head>
 
 <body>
@@ -135,11 +138,8 @@
     </div>
 </footer>
 
-
-{% javascripts 'assets/js/jquery.min.js'
-               'assets/js/*' %}
-<script src="{{ asset_url }}"></script>
-{% endjavascripts %}
+<script src="{{ asset('js/jquery.min.js', 'ezdesign' ) }}"></script>
+<script src="{{ asset('js/bootstrap.min.js', 'ezdesign' ) }}"></script>
 
 </body>
 </html>
