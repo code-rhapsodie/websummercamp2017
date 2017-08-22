@@ -40,7 +40,7 @@ ezpublish:
                 full:
                     root_folder:
                         controller: "ez_query:contentQueryAction"
-                        template: "full/welcome.html.twig"
+                        template: "@ezdesign/full/welcome.html.twig"
                         params:
                             query:
                                 query_type: 'SectionChildren'

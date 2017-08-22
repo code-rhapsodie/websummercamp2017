@@ -1,0 +1,14 @@
+{% extends "pagelayout.html.twig" %}
+{% block content %}
+    I'm in my thematic welcome template.
+    <h3 class="center bottom-plus new-header">{{ ez_content_name(content) }}</h3>
+    {% for child in children.searchHits %}
+        {% if loop.first %}<ul>{% endif %}
+        <li><a href="{{ path('ez_urlalias', { 'contentId': child.valueObject.contentInfo.id }) }}">{{ ez_content_name(child.valueObject) }}</a></li>
+        {% if loop.last %}</ul>{% endif %}
+    {% else %}
+        {{ 'Not any Point of interest in your content tree' }}
+    {% endfor %}
+
+    <div class="col-xs-10 text-justified">{{ ez_render_field(content, 'description') }}</div>
+{% endblock %}
