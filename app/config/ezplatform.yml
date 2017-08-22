@@ -89,3 +89,12 @@ assetic:
                 - "assets/themes/corporate/css/bootstrap.min.css"
                 - "assets/themes/corporate/css/bootstrap-theme.css"
                 - "assets/themes/corporate/css/normalize.css"
+
+ez_core_extra:
+    system:
+        site:
+            twig_globals:
+                website_title: My Summer Camp Site 1
+        site2:
+            twig_globals:
+                website_title: My Summer Camp Site 2
