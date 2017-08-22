@@ -67,3 +67,14 @@ ezpublish:
                         template: "line/point_of_interest.html.twig"
                         match:
                             Identifier\ContentType: "poi"
+        site:
+            design: my_design1
+        site2:
+            design: my_design2
+
+ezdesign:
+    design_list:
+        # my_design will be composed of "theme1" and "theme2"
+        # "theme1" will be the first tried. If the template cannot be found in "theme1", "theme2" will be tried out, and then default app/Resources/views folder.
+        my_design1: [corporate]
+        my_design2: [site2, corporate]
