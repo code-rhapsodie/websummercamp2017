@@ -77,7 +77,10 @@ ezdesign:
         # my_design will be composed of "theme1" and "theme2"
         # "theme1" will be the first tried. If the template cannot be found in "theme1", "theme2" will be tried out, and then default app/Resources/views folder.
         my_design1: [corporate]
-        my_design2: [site2, corporate]
+        my_design2: [my_external_theme, site2, corporate]
+    templates_theme_paths:
+        my_external_theme:
+            - '%kernel.root_dir%/../vendor/ezsystems/platform-ui-bundle/Resources/views'
 
 assetic:
     assets:
