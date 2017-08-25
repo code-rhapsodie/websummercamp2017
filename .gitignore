@@ -3,6 +3,7 @@
 #the robots.txt changes depending on the platform, non-production ones have “Disallow: /”
 
 # Symfony
+/.web-server-pid
 /web/bundles/
 /web/assetic/
 /web/css/
@@ -11,6 +12,18 @@
 /vendor/
 /bin/
 /composer.phar
+/phpunit.xml
+/var/*
+!/var/cache
+/var/cache/*
+!var/cache/.gitkeep
+!/var/logs
+/var/logs/*
+!var/logs/.gitkeep
+!/var/sessions
+/var/sessions/*
+!var/sessions/.gitkeep
+!var/SymfonyRequirements.php
 
 # eZ 5 .gitignore.dist
 .php~

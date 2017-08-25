@@ -22,9 +22,9 @@ if (($useDebugging = getenv('SYMFONY_DEBUG')) === false || $useDebugging === '')
 if ($loaderFile = getenv('SYMFONY_CLASSLOADER_FILE')) {
     require_once $loaderFile;
 } else {
-    require_once __DIR__ . '/../app/autoload.php';
-    if (!$useDebugging) {
-        require_once __DIR__ . '/../app/bootstrap.php.cache';
+    require_once __DIR__ . '/../vendor/autoload.php';
+    if (!$useDebugging && PHP_VERSION < 70000) {
+        require_once __DIR__ . '/../var/bootstrap.php.cache';
     }
 }
 
@@ -37,7 +37,7 @@ if ($useDebugging) {
 $kernel = new AppKernel($environment, $useDebugging);
 
 // we don't want to use the classes cache if we are in a debug session
-if (!$useDebugging) {
+if (!$useDebugging && PHP_VERSION < 70000) {
     $kernel->loadClassCache();
 }
 
