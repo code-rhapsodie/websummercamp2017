@@ -62,6 +62,10 @@ ezpublish:
                                     subtree: "@=location.pathString"
                                     type: ['poi']
                                 assign_results_to: 'pois'
+                            foo: bar
+                            os: ['linux', 'macos', 'losedows']
+                            languages: '$languages$'
+                            yui_modules: '$yui.modules;ez_platformui$'
                 line:
                     poi_line:
                         template: "line/point_of_interest.html.twig"
