@@ -6,9 +6,10 @@ use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\UserService;
 use Lolautruche\EzCoreExtraBundle\View\ConfigurableView;
-use Lolautruche\EzCoreExtraBundle\View\ViewParameterProviderInterface;
+use Lolautruche\EzCoreExtraBundle\View\ConfigurableViewParameterProvider;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class MetaDataProvider implements ViewParameterProviderInterface
+class MetaDataProvider extends ConfigurableViewParameterProvider
 {
     /**
      * @var ContentService
@@ -37,13 +38,39 @@ class MetaDataProvider implements ViewParameterProviderInterface
      *
      * @return array
      */
-    public function getViewParameters(ConfigurableView $view, array $options = [])
+    public function doGetParameters(ConfigurableView $view, array $options = [])
     {
         $content = $view->getContent();
 
+        if ($options['use_author_field']) {
+            $authorName = (string)$content->getFieldValue($options['author_field_name']);
+        }
+
         return [
-            'author' => $this->userService->loadUser($content->contentInfo->ownerId),
+            'author' => $authorName ?? $this->userService->loadUser($content->contentInfo->ownerId)->getName(),
             'contentType' => $this->contentTypeService->loadContentType($content->contentInfo->contentTypeId),
         ];
+    }
+
+    /**
+     * Configures the OptionsResolver for the param provider.
+     *
+     * Example:
+     * ```php
+     * // type setting will be required
+     * $resolver->setRequired('type');
+     * // limit setting will be optional, and will have a default value of 10
+     * $resolver->setDefault('limit', 10);
+     * ```
+     *
+     * @param OptionsResolver $optionsResolver
+     */
+    protected function configureOptions(OptionsResolver $optionsResolver)
+    {
+        $optionsResolver
+            ->setDefaults([
+                'use_author_field' => false,
+                'author_field_name' => 'author',
+            ]);
     }
 }

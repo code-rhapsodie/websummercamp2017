@@ -64,6 +64,8 @@ ezpublish:
                                 assign_results_to: 'pois'
                             metadata:
                                 provider: metadata_provider
+                                options:
+                                    use_author_field: true
 
                 line:
                     poi_line:
